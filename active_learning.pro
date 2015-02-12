@@ -16,8 +16,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    subwindow.cpp \
+    wizard.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    subwindow.h \
+    wizard.h
 
-FORMS    += mainwindow.ui
+TRANSLATIONS = al_fr.ts al_en.ts
+
+FORMS    += mainwindow.ui \
+    subwindow.ui \
+    wizard.ui
