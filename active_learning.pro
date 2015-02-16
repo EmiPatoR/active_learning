@@ -18,14 +18,23 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     subwindow.cpp \
-    wizard.cpp
+    wizard.cpp \
+    wizardpage.cpp
 
 HEADERS  += mainwindow.h \
     subwindow.h \
-    wizard.h
+    wizard.h \
+    wizardpage.h
 
 TRANSLATIONS = al_fr.ts al_en.ts
 
 FORMS    += mainwindow.ui \
     subwindow.ui \
     wizard.ui
+
+INCLUDEPATH += -D__STDC_CONSTANT_MACROS
+INCLUDEPATH += \\usr\\include\\qwt
+
+LIBS += -L\\usr\\local\\lib \
+    -lopencv_ml \
+    -lqwt

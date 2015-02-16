@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>611</width>
+    <height>438</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,26 +19,142 @@
   <property name="wizardStyle">
    <enum>QWizard::ModernStyle</enum>
   </property>
-  <widget class="QWizardPage" name="wizardPage1">
+  <widget class="WizardPage" name="wizardPage1">
    <property name="title">
-    <string>Creating new algorithm</string>
+    <string>Setting up a new algorithm</string>
    </property>
    <property name="subTitle">
     <string>Introduction</string>
    </property>
+   <attribute name="pageId">
+    <string notr="true">1</string>
+   </attribute>
+   <layout class="QFormLayout" name="formLayout_2">
+    <property name="fieldGrowthPolicy">
+     <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+    </property>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label">
+      <property name="lineWidth">
+       <number>3</number>
+      </property>
+      <property name="text">
+       <string>Welcome to the wizard algorithm creator which helps you setting up various machine learning algorithms</string>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="2">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_4">
+      <property name="text">
+       <string>Select a name for your Algorithm :</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLineEdit" name="lineEdit">
+      <property name="inputMask">
+       <string/>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
-  <widget class="QWizardPage" name="wizardPage2">
+  <widget class="WizardPage" name="wizardPage2">
    <property name="title">
-    <string>Creating new algorithm</string>
+    <string>Setting up a new algorithm</string>
    </property>
    <property name="subTitle">
-    <string>Intro</string>
+    <string>Choosing an algorithm</string>
    </property>
    <attribute name="pageId">
     <string notr="true">2</string>
    </attribute>
+   <layout class="QFormLayout" name="formLayout">
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label_2">
+      <property name="text">
+       <string>In this step your are going to select the algorithm you want to use.</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="label_3">
+      <property name="text">
+       <string>Select an algorithm : </string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QComboBox" name="comboBox">
+      <property name="currentText">
+       <string>SVM (Support Vector Machine)</string>
+      </property>
+      <item>
+       <property name="text">
+        <string>SVM (Support Vector Machine)</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Basic Perceptron</string>
+       </property>
+      </item>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWizardPage" name="wizardPage3">
+   <property name="title">
+    <string>Setting up a new algorithm</string>
+   </property>
+   <property name="subTitle">
+    <string>Final step</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">3</string>
+   </attribute>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WizardPage</class>
+   <extends>QWizardPage</extends>
+   <header location="global">wizardpage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

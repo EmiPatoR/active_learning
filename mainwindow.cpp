@@ -5,6 +5,9 @@
 
 #include <iostream>
 #include <QDir>
+#include <QMessageBox>
+#include <QStringList>
+#include <QStringListIterator>
 #include <qwt/qwt_plot.h>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -15,6 +18,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Initisalisation des attributs
     m_w = NULL; // On initisalise la fenetre d'ajout d'algo à null
+
+
+    //initisations des modeles
+
+    //Pour la liste de fenetres
+    m_windows = new QStringListModel(m_listWindows);
+    ui->listView->setModel(m_windows);
 
     //On aggrandi la fenêtre pour occuper tout l'écran
     this->showMaximized();
@@ -35,18 +45,48 @@ void MainWindow::slotLanguageChanged(QAction* action){
     }
 }
 
-void MainWindow::slotNotifyClosedWizard(int result){
-    if(result == QDialog::Accepted) // Si tout est OK
-    {
+void MainWindow::slotNotifyClosedSubWindow(QString name){
+    for(QStringList::iterator it = m_listWindows.begin(); it != m_listWindows.end() ; ++it){
+        if(it->compare(name) == 0){
+            m_listWindows.removeOne(*it);
+            delete m_wlist[name];
+            m_wlist.remove(name);
+        }
+    }
+    m_windows->setStringList(m_listWindows);
+}
 
+void MainWindow::slotMaxMin(QModelIndex i){
+    QString name = m_windows->data(i,Qt::EditRole).toString();
+    if(m_wlist[name]->isMinimized())
+        m_wlist[name]->showNormal();
+    else
+        m_wlist[name]->showMinimized();
+}
+
+void MainWindow::slotNotifyClosedWizard(int result){
+
+    // Si tout est OK
+    if(result == QDialog::Accepted)
+    {
+        Subwindow* child = newFile(m_w->getAlgName(), m_w->getAlgType());
+        m_listWindows << m_w->getAlgName();
+        m_windows->setStringList(m_listWindows);
+        child->show();
+        m_wlist[m_w->getAlgName()] = child;
+        child = NULL;
+        //Connection
+        connect(m_wlist[m_w->getAlgName()],SIGNAL(signalClosed(QString)),this,SLOT(slotNotifyClosedSubWindow(QString)));
+        connect(ui->listView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(slotMaxMin(QModelIndex)));
     }
-    else{ // Sinon on supprime le pointeur
-        delete m_w;
-        m_w = NULL;
-    }
+
+    //on supprime le pointeur
+    delete m_w;
+    m_w = NULL;
 }
 
 void MainWindow::slotClose(){
+    //TODO LIBERER MEMOIRE m_wlist
     ui->mdiArea->closeAllSubWindows();
     this->close();
 }
@@ -54,25 +94,18 @@ void MainWindow::slotClose(){
 void MainWindow::slotNewFile(){
 
     if(m_w == NULL){ // Si le wizard n'a pas déja été crée
-        m_w = new Wizard(this); // Creation d'un nouveau wizard
+        m_w = new Wizard(m_listWindows, this); // Creation d'un nouveau wizard
         m_w->show(); // Affichage de ce dernier
 
         //connection
         connect(m_w,SIGNAL(finished(int)),this,SLOT(slotNotifyClosedWizard(int)));
     }
-    else // Sinon si on essaye d'en creer un alors qu'il en existe déja un
-    {
-        m_w->setFocus(); // On lui redonne le focus
-    }
-
-
-    // Subwindow* child = newFile();
-    // child->show();
+    m_w->setFocus(); // On lui redonne le focus
 }
 
 
-Subwindow* MainWindow::newFile(){
-    Subwindow *child = new Subwindow();
+Subwindow* MainWindow::newFile(QString name, QString type){
+    Subwindow *child = new Subwindow(name, type);
     ui->mdiArea->addSubWindow(child);
     return child;
 }
@@ -279,4 +312,5 @@ void MainWindow::printStatus(QString message, unsigned int ms_time)
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete m_windows;
 }
