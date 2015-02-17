@@ -22,8 +22,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //initisations des modeles
 
+    m_listWindows = new QStringList();
+
     //Pour la liste de fenetres
-    m_windows = new QStringListModel(m_listWindows);
+    m_windows = new QStringListModel(*m_listWindows);
     ui->listView->setModel(m_windows);
 
     //On aggrandi la fenêtre pour occuper tout l'écran
@@ -46,22 +48,22 @@ void MainWindow::slotLanguageChanged(QAction* action){
 }
 
 void MainWindow::slotNotifyClosedSubWindow(QString name){
-    for(QStringList::iterator it = m_listWindows.begin(); it != m_listWindows.end() ; ++it){
-        if(it->compare(name) == 0){
-            m_listWindows.removeOne(*it);
-            delete m_wlist[name];
+    Subwindow* to_delete = NULL;
+    for(int i=0; i<m_listWindows->size(); ++i){
+        if((*m_listWindows)[i].compare(name) == 0){
+            m_listWindows->removeOne(name);
+            to_delete = m_wlist[name];
             m_wlist.remove(name);
+            delete to_delete;
         }
     }
-    m_windows->setStringList(m_listWindows);
+    m_windows->setStringList(*m_listWindows);
 }
 
 void MainWindow::slotMaxMin(QModelIndex i){
     QString name = m_windows->data(i,Qt::EditRole).toString();
     if(m_wlist[name]->isMinimized())
         m_wlist[name]->showNormal();
-    else
-        m_wlist[name]->showMinimized();
 }
 
 void MainWindow::slotNotifyClosedWizard(int result){
@@ -70,13 +72,12 @@ void MainWindow::slotNotifyClosedWizard(int result){
     if(result == QDialog::Accepted)
     {
         Subwindow* child = newFile(m_w->getAlgName(), m_w->getAlgType());
-        m_listWindows << m_w->getAlgName();
-        m_windows->setStringList(m_listWindows);
+        *m_listWindows << m_w->getAlgName();
+        m_windows->setStringList(*m_listWindows);
         child->show();
         m_wlist[m_w->getAlgName()] = child;
-        child = NULL;
         //Connection
-        connect(m_wlist[m_w->getAlgName()],SIGNAL(signalClosed(QString)),this,SLOT(slotNotifyClosedSubWindow(QString)));
+        connect(child,SIGNAL(signalClosed(QString)),this,SLOT(slotNotifyClosedSubWindow(QString)));
         connect(ui->listView,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(slotMaxMin(QModelIndex)));
     }
 
@@ -94,7 +95,7 @@ void MainWindow::slotClose(){
 void MainWindow::slotNewFile(){
 
     if(m_w == NULL){ // Si le wizard n'a pas déja été crée
-        m_w = new Wizard(m_listWindows, this); // Creation d'un nouveau wizard
+        m_w = new Wizard(*m_listWindows, this); // Creation d'un nouveau wizard
         m_w->show(); // Affichage de ce dernier
 
         //connection

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>611</width>
-    <height>438</height>
+    <width>642</width>
+    <height>443</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -135,7 +135,368 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWizardPage" name="wizardPage3">
+  <widget class="WizardPage" name="wizardPage4">
+   <property name="title">
+    <string>Setting up a new algorithm</string>
+   </property>
+   <property name="subTitle">
+    <string>Perceptron parameters</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">4</string>
+   </attribute>
+  </widget>
+  <widget class="WizardPage" name="wizardPage3">
+   <property name="title">
+    <string>Setting up a new algorithm</string>
+   </property>
+   <property name="subTitle">
+    <string>SVM parameters</string>
+   </property>
+   <attribute name="pageId">
+    <string notr="true">3</string>
+   </attribute>
+   <layout class="QFormLayout" name="formLayout_3">
+    <property name="fieldGrowthPolicy">
+     <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
+    </property>
+    <item row="0" column="0" colspan="2">
+     <widget class="QLabel" name="label_5">
+      <property name="text">
+       <string>Here you have to setup your SVM.</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QRadioButton" name="radioButton">
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Manual configuration</string>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QRadioButton" name="radioButton_2">
+      <property name="text">
+       <string>Automatic configuration</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="2">
+     <widget class="QFrame" name="frame">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>300</width>
+        <height>250</height>
+       </size>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QGridLayout" name="gridLayout">
+       <item row="2" column="3">
+        <widget class="QPushButton" name="pushButton_2">
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>?</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" colspan="2">
+        <widget class="QComboBox" name="comboBox_2">
+         <property name="minimumSize">
+          <size>
+           <width>350</width>
+           <height>0</height>
+          </size>
+         </property>
+         <item>
+          <property name="text">
+           <string>Classification C_SVC (parameters : C)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Classification NU_SVC (parameters : NU)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>SVM ONE_CLASS ( One class vs ALL)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Regression EPS_SVR (Epsilon SVR, parameters : p,C)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Regression NU_SVR ( parameters : NU)</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_8">
+         <property name="text">
+          <string>Parameters :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_6">
+         <property name="maximumSize">
+          <size>
+           <width>100</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>SVM type :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>Kernel type :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" colspan="3">
+        <spacer name="verticalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="2" column="1" colspan="2">
+        <widget class="QComboBox" name="comboBox_3">
+         <item>
+          <property name="text">
+           <string>None (Linear kernel , no mapping)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Polynomial Kernel ( parameters : degree, gamma,  coef0)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Radial (parameters : gamma)</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Sigmoid (parameters : (gamma , coef0)</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QPushButton" name="pushButton">
+         <property name="maximumSize">
+          <size>
+           <width>30</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>?</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="4">
+        <widget class="QFrame" name="frame_2">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>150</height>
+          </size>
+         </property>
+         <property name="frameShape">
+          <enum>QFrame::StyledPanel</enum>
+         </property>
+         <property name="frameShadow">
+          <enum>QFrame::Raised</enum>
+         </property>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="1" column="6">
+           <widget class="QLabel" name="lbl_gamma">
+            <property name="text">
+             <string>gamma :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="6">
+           <widget class="QLabel" name="lbl_p">
+            <property name="text">
+             <string>p :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="3">
+           <widget class="QLabel" name="lbl_NU">
+            <property name="text">
+             <string>NU : </string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="8">
+           <spacer name="horizontalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="4">
+           <widget class="QDoubleSpinBox" name="dblspin_NU"/>
+          </item>
+          <item row="0" column="7">
+           <widget class="QDoubleSpinBox" name="dblspin_p"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="lbl_deg">
+            <property name="text">
+             <string>degree :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="3">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="lbl_C">
+            <property name="maximumSize">
+             <size>
+              <width>75</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>C :</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="4">
+           <widget class="QDoubleSpinBox" name="dblspin_coef"/>
+          </item>
+          <item row="1" column="2">
+           <widget class="Line" name="line_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="2">
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="QDoubleSpinBox" name="dblspin_deg"/>
+          </item>
+          <item row="0" column="1">
+           <widget class="QDoubleSpinBox" name="dblspin_C">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="3">
+           <widget class="QLabel" name="lbl_coef">
+            <property name="text">
+             <string>coef0 : </string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="7">
+           <widget class="QDoubleSpinBox" name="dblspin_gamma"/>
+          </item>
+          <item row="0" column="5">
+           <widget class="Line" name="line_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="5">
+           <widget class="Line" name="line_4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="8">
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="WizardPage" name="wizardPage5">
    <property name="title">
     <string>Setting up a new algorithm</string>
    </property>
@@ -143,7 +504,7 @@
     <string>Final step</string>
    </property>
    <attribute name="pageId">
-    <string notr="true">3</string>
+    <string notr="true">5</string>
    </attribute>
   </widget>
  </widget>
@@ -156,5 +517,22 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>radioButton_2</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>frame</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>365</x>
+     <y>112</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>359</x>
+     <y>228</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

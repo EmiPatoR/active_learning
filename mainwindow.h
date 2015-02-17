@@ -36,19 +36,19 @@ public slots :
 private:
 
     // UI Fenetre principale
-    Ui::MainWindow               *ui;
+    Ui::MainWindow*               ui;
 
     // Fenetre ajout nouvel algo
-    Wizard                       *m_w;
+    Wizard*                       m_w;
 
     //Listes de fenetres (String)
-    QStringList                  m_listWindows;
+    QStringList*                 m_listWindows;
 
     //Liste des fenetres (pointeurs)
     QMap<QString, Subwindow*>    m_wlist;
 
     //Modeles
-    QStringListModel             *m_windows;
+    QStringListModel*            m_windows;
 
     //Traduction
     QTranslator                  m_translator;

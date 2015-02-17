@@ -2,6 +2,7 @@
 #include "ui_subwindow.h"
 
 #include <QCloseEvent>
+#include <qwt/qwt_plot.h>
 
 Subwindow::Subwindow(QString name, QString type, QWidget *parent) :
     QDialog(parent),
